@@ -1,5 +1,5 @@
 {
-    "name": "ts/writer",
+    "name": "acsi/acsi-tswriter",
     "description": "Extensible data output library.",
     "license": "MIT",
     "authors": [
