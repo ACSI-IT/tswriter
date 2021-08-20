@@ -1,21 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 use TS\Writer\WriterInterface;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class WriterEvent extends Event
 {
-    /**
-     * @var WriterInterface
-     */
+    /** @var WriterInterface */
     protected $writer;
 
     /**

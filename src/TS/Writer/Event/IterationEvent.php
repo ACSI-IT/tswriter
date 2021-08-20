@@ -1,20 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Event;
 
 use TS\Writer\IterableWriterInterface;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class IterationEvent extends WriterEvent
 {
-    /**
-     * @var IterableWriterInterface
-     */
+    /** @var IterableWriterInterface */
     protected $writer;
 
     /**
@@ -26,8 +20,6 @@ class IterationEvent extends WriterEvent
     }
 
     /**
-     * Returns the last line of the IterableWriter.
-     *
      * @return array
      */
     public function getLastLine()

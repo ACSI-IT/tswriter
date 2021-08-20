@@ -1,18 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Exception;
 
 use Exception;
 use LogicException;
 
-/**
- * Thrown when a file writer is told to write without defining the file path.
- *
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 final class FileNotSetException extends LogicException
 {
     /**

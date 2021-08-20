@@ -1,26 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\Event\WriterEvent;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 abstract class AbstractWriter implements WriterInterface
 {
-    /**
-     * @var array
-     */
-    protected $data = array();
+    /** @var array */
+    protected $data = [];
 
-    /**
-     * @var EventDispatcherInterface
-     */
+    /** @var EventDispatcherInterface */
     protected $eventDispatcher;
 
     /**
@@ -43,8 +35,6 @@ abstract class AbstractWriter implements WriterInterface
     }
 
     /**
-     * Returns the previously set data array.
-     *
      * @return array
      */
     public function getData()
@@ -53,8 +43,6 @@ abstract class AbstractWriter implements WriterInterface
     }
 
     /**
-     * Sets the data array to be written.
-     *
      * @param  array $data
      * @return static
      */

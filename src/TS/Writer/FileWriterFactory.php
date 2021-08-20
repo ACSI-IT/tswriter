@@ -1,27 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer;
 
 use InvalidArgumentException;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\Exception\FactoryException;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
- */
 class FileWriterFactory
 {
-    /**
-     * @var EventDispatcherInterface
-     */
+    /** @var EventDispatcherInterface */
     private $eventDispatcher;
 
-    /**
-     * @var FileWriterInterface[]
-     */
+    /** @var FileWriterInterface[] */
     private $registry = array();
 
     /**

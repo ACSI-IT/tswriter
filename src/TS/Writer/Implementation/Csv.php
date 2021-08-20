@@ -1,30 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Implementation;
 
 use TS\Writer\IterableFileWriter;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class Csv extends IterableFileWriter
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $delimiter = ',';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $enclosure = '"';
 
-    /**
-     * @var resource
-     */
+    /** @var resource */
     private $handle;
 
     /**

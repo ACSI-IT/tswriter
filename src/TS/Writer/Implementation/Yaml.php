@@ -1,26 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Implementation;
 
 use Symfony\Component\Yaml\Dumper;
 use TS\Writer\FileWriter;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class Yaml extends FileWriter
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $indentation = 4;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $inlineLevel = 3;
 
     /**

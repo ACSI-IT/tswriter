@@ -1,18 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Exception;
 
 use Exception;
 use RuntimeException;
 
-/**
- * Thrown when the FileWriterFactory wasn't able to create a matching writer.
- *
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2013
- * @version   1.0
- */
 final class FactoryException extends RuntimeException
 {
     /**
