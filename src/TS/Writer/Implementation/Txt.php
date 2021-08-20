@@ -1,20 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Implementation;
 
 use TS\Writer\IterableFileWriter;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class Txt extends IterableFileWriter
 {
     /**
-     * Actual line writing logic.
-     *
      * @param  mixed $data
      * @return bool
      */
@@ -24,8 +18,6 @@ class Txt extends IterableFileWriter
     }
 
     /**
-     * Dumps the data array as a string.
-     *
      * @return string
      */
     public function dumpData()

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Implementation;
 
 use DOMDocument;
@@ -8,32 +10,18 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\Exception\DumpingException;
 use TS\Writer\FileWriter;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class Xml extends FileWriter
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $encoding = 'UTF-8';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $prettyPrint = true;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $rootNode = 'rootNode';
 
-    /**
-     * @var DOMDocument
-     */
+    /** @var DOMDocument */
     private $xml;
 
     /**

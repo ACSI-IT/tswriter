@@ -1,37 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Implementation;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\FileWriter;
-use Zend\Json\Json as ZendJson;
+use Laminas\Json\Json as ZendJson;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class Json extends FileWriter
 {
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $compabilityMode = false;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $indentation = 4;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $options = 0;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $prettyPrint = true;
 
     /**

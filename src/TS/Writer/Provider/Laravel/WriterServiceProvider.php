@@ -1,22 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Provider\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\FileWriterContainer;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class WriterServiceProvider extends ServiceProvider
 {
-    /**
-     * {@inheritDoc}
-     */
+    /** @var bool */
     protected $defer = true;
 
     /**
@@ -66,10 +60,10 @@ class WriterServiceProvider extends ServiceProvider
     }
 
     /**
-     * {@inheritDoc}
+     * @return string[]
      */
     public function provides()
     {
-        return array('writer', 'symfony.dispatcher');
+        return ['writer', 'symfony.dispatcher'];
     }
 }

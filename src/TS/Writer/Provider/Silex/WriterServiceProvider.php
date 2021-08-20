@@ -1,17 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Provider\Silex;
 
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use TS\Writer\FileWriterContainer;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class WriterServiceProvider implements ServiceProviderInterface
 {
     /**

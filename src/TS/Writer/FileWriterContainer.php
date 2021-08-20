@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer;
 
 use ArrayAccess;
@@ -9,27 +11,15 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use TS\Writer\Exception\FactoryClassException;
 use TS\Writer\Exception\FactoryTypeException;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class FileWriterContainer implements ArrayAccess
 {
-    /**
-     * @var EventDispatcherInterface
-     */
+    /** @var EventDispatcherInterface */
     private $eventDispatcher;
 
-    /**
-     * @var ReflectionClass[]
-     */
+    /** @var ReflectionClass[] */
     private $registry = array();
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $supportedTypes = array();
 
     /**

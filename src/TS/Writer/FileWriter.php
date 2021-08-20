@@ -1,48 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer;
 
 use TS\Writer\Event\WriterEvent;
 use TS\Writer\Exception\FileNotSetException;
 use TS\Writer\Exception\FilesystemException;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 abstract class FileWriter extends AbstractWriter implements FileWriterInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $file;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $lineEnding = "\n";
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $mode = 0;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     const FILE_MODE_APPEND = \FILE_APPEND;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     const FILE_MODE_OVERWRITE = 0;
 
     /**
-     * Returns the name of the file that should be written to.
-     *
-     * @return string
+     * @return string|null
      */
     public function getFileName()
     {
@@ -51,7 +35,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
         }
 
         $filename = pathinfo($this->file, PATHINFO_FILENAME);
-        $ext      = pathinfo($this->file, PATHINFO_EXTENSION);
+        $ext = pathinfo($this->file, PATHINFO_EXTENSION);
 
         return $filename . (!empty($ext) ? '.' . $ext : '');
     }

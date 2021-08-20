@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer;
 
 use TS\Writer\Event\IterationEvent;
@@ -7,22 +9,12 @@ use TS\Writer\Event\WriterEvent;
 use TS\Writer\Exception\FileNotSetException;
 use TS\Writer\Exception\FilesystemException;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 abstract class IterableFileWriter extends FileWriter implements IterableWriterInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $lastLine;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $mode = FILE_APPEND;
 
     /**

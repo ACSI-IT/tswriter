@@ -1,18 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer\Exception;
 
 use Exception;
 use RuntimeException;
 
-/**
- * Thrown when anything unwanted happens during data dumping.
- *
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 final class DumpingException extends RuntimeException
 {
     /**

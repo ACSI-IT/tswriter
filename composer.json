@@ -9,10 +9,9 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=7.4",
         "symfony/event-dispatcher": "~2.1",
-        "symfony/yaml": "~2.1",
-        "zendframework/zend-json": "~2.2"
+        "symfony/yaml": "~2.1"
     },
     "require-dev": {
         "laravel/framework": "4.0.*@dev",

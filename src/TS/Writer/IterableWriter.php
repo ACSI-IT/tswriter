@@ -1,21 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TS\Writer;
 
 use TS\Writer\Event\IterationEvent;
 use TS\Writer\Event\WriterEvent;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 abstract class IterableWriter extends AbstractWriter implements IterableWriterInterface
 {
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $lastLine;
 
     /**
