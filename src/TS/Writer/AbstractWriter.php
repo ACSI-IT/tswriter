@@ -10,7 +10,7 @@ use TS\Writer\Event\WriterEvent;
 abstract class AbstractWriter implements WriterInterface
 {
     /** @var array */
-    protected $data = array();
+    protected $data = [];
 
     /** @var EventDispatcherInterface */
     protected $eventDispatcher;
