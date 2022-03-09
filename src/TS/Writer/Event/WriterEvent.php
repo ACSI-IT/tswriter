@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace TS\Writer\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 use TS\Writer\WriterInterface;
 
 class WriterEvent extends Event
