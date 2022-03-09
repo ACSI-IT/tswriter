@@ -22,7 +22,7 @@ abstract class AbstractWriter implements WriterInterface
     {
         $this->eventDispatcher = $eventDispatcher;
 
-        $this->eventDispatcher->dispatch(WriterEvents::INIT, new WriterEvent($this));
+        $this->eventDispatcher->dispatch(new WriterEvent($this), WriterEvents::INIT);
     }
 
     /**

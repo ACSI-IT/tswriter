@@ -138,7 +138,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
             throw new FileNotSetException;
         }
 
-        $this->eventDispatcher->dispatch(WriterEvents::BEFORE_WRITE, new WriterEvent($this));
+        $this->eventDispatcher->dispatch(new WriterEvent($this), WriterEvents::BEFORE_WRITE);
 
         $data = $this->dumpData();
 
@@ -153,7 +153,7 @@ abstract class FileWriter extends AbstractWriter implements FileWriterInterface
             // @codeCoverageIgnoreEnd
         }
 
-        $this->eventDispatcher->dispatch(WriterEvents::WRITE_COMPLETE, new WriterEvent($this));
+        $this->eventDispatcher->dispatch(new WriterEvent($this), WriterEvents::WRITE_COMPLETE);
 
         return true;
     }

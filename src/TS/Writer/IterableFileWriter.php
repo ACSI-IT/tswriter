@@ -26,7 +26,7 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
     {
         $this->setLastLine($this->current());
 
-        $this->eventDispatcher->dispatch(WriterEvents::BEFORE_WRITE, new IterationEvent($this));
+        $this->eventDispatcher->dispatch(new IterationEvent($this), WriterEvents::BEFORE_WRITE);
 
         return $this->getLastLine();
     }
@@ -125,7 +125,7 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
         $data    = $this->morphData();
 
         if ($success && $data !== null) {
-            $this->eventDispatcher->dispatch(WriterEvents::WRITE, new IterationEvent($this));
+            $this->eventDispatcher->dispatch(new IterationEvent($this), WriterEvents::WRITE);
 
             $success = $this->writeLine($data);
 
@@ -153,13 +153,13 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
             throw new FileNotSetException;
         }
 
-        $this->eventDispatcher->dispatch(WriterEvents::WRITE_ALL, new WriterEvent($this));
+        $this->eventDispatcher->dispatch(new WriterEvent($this), WriterEvents::WRITE_ALL);
 
         for ($this->rewind(); $this->valid(); $this->next()) {
             $this->write();
         }
 
-        $this->eventDispatcher->dispatch(WriterEvents::WRITE_COMPLETE, new WriterEvent($this));
+        $this->eventDispatcher->dispatch(new WriterEvent($this), WriterEvents::WRITE_COMPLETE);
 
         return true;
     }
