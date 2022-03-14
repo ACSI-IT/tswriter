@@ -30,7 +30,7 @@ class TxtTest extends BaseTest
         $this->writer->setData($this->data);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->writer = null;
         @unlink($this->tmpDir . 'textFile.txt');

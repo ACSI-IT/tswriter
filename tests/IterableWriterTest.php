@@ -2,7 +2,7 @@
 
 namespace TS\Writer\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\Event\IterationEvent;
 use TS\Writer\IterableWriter;
@@ -38,13 +38,7 @@ class ArrayWriter extends IterableWriter
     }
 }
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.0
- */
-class IterableWriterTest extends PHPUnit_Framework_TestCase
+class IterableWriterTest extends TestCase
 {
     /**
      * @var ArrayWriter
@@ -56,7 +50,7 @@ class IterableWriterTest extends PHPUnit_Framework_TestCase
         $this->writer = new ArrayWriter(new EventDispatcher);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->writer = null;
     }
