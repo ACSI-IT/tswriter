@@ -25,7 +25,7 @@ class YamlTest extends BaseTest
         $this->writer->setData($this->getData());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->writer = null;
         @unlink($this->tmpDir . 'yamlFile.yml');

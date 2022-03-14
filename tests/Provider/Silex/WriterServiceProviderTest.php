@@ -2,24 +2,18 @@
 
 namespace TS\Writer\Provider\Silex\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Silex\Application;
 use TS\Writer\Provider\Silex\WriterServiceProvider;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
-class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
+class WriterServiceProviderTest extends TestCase
 {
     /**
      * @var Application
      */
     private $application;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->application = new Application;
     }

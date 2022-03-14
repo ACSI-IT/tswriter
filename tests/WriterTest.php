@@ -23,7 +23,7 @@ class WriterTest extends BaseTest
         $this->writer = new Txt(new EventDispatcher);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->writer = null;
         @unlink($this->tmpDir . '1/2/3/test.txt');

@@ -2,7 +2,7 @@
 
 namespace TS\Writer\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\Event\IterationEvent;
 use TS\Writer\Event\WriterEvent;
@@ -15,9 +15,9 @@ use TS\Writer\WriterEvents;
  * @copyright 2014
  * @version   1.2
  */
-class EventTest extends PHPUnit_Framework_TestCase
+class EventTest extends TestCase
 {
-    protected function tearDown()
+    protected function tearDown(): void
     {
         @unlink(__DIR__ . '/tmp/eventTest.txt');
     }

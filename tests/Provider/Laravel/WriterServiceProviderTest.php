@@ -5,7 +5,7 @@ namespace TS\Writer\Provider\Laravel\Tests;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Facade;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TS\Writer\Provider\Laravel\WriterServiceProvider;
 
 /**
@@ -14,14 +14,14 @@ use TS\Writer\Provider\Laravel\WriterServiceProvider;
  * @copyright 2014
  * @version   1.2
  */
-class WriterServiceProviderTest extends PHPUnit_Framework_TestCase
+class WriterServiceProviderTest extends TestCase
 {
     /**
      * @var Application
      */
     private $application;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->application = new Application;
     }

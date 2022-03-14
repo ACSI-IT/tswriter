@@ -2,7 +2,7 @@
 
 namespace TS\Writer\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionObject;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\FileWriterFactory;
@@ -15,7 +15,7 @@ use stdClass;
  * @copyright 2013
  * @version   1.0
  */
-class FactoryTest extends PHPUnit_Framework_TestCase
+class FactoryTest extends TestCase
 {
     /**
      * @var FileWriterFactory
@@ -27,7 +27,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
         $this->factory = new FileWriterFactory(new EventDispatcher());
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->factory = null;
     }

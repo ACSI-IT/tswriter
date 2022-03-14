@@ -2,7 +2,7 @@
 
 namespace TS\Writer\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
@@ -12,7 +12,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
  * @copyright 2014
  * @version   1.2
  */
-abstract class BaseTest extends PHPUnit_Framework_TestCase
+abstract class BaseTest extends TestCase
 {
     protected $data = array(
         'array'  => array('key' => 'value'),

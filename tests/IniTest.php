@@ -19,14 +19,14 @@ class IniTest extends BaseTest
      */
     private $writer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->writer = new Ini($this->dispatcher);
         $this->writer->setTargetFile($this->tmpDir . 'iniFile.ini');
         $this->writer->setData($this->data);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->writer = null;
         @unlink($this->tmpDir . 'iniFile.ini');
