@@ -1,16 +1,13 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use ReflectionObject;
 use TS\Writer\Implementation\Txt;
+use TS\Writer\Exception\FileNotSetException;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class TxtTest extends BaseTest
 {
     protected $data = array(
@@ -23,7 +20,7 @@ class TxtTest extends BaseTest
      */
     private $writer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->writer = new Txt($this->dispatcher);
         $this->writer->setTargetFile($this->tmpDir . 'textFile.txt');
@@ -53,19 +50,17 @@ class TxtTest extends BaseTest
         $this->assertSame("\r\n", $lineEnding->getValue($this->writer));
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\FileNotSetException
-     */
     public function testWriteFileNotSetException()
     {
+        $this->expectException(FileNotSetException::class);
+
         Txt::factory($this->dispatcher)->write();
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\FileNotSetException
-     */
     public function testWriteAllFileNotSetException()
     {
+        $this->expectException(FileNotSetException::class);
+
         Txt::factory($this->dispatcher)->writeAll();
     }
 

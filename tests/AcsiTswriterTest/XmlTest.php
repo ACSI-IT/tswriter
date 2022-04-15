@@ -1,16 +1,13 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use ReflectionObject;
 use TS\Writer\Implementation\Xml;
+use TS\Writer\Exception\DumpingException;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class XmlTest extends BaseTest
 {
     protected $data = array(
@@ -37,7 +34,7 @@ class XmlTest extends BaseTest
      */
     private $writer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->writer = new Xml($this->dispatcher);
         $this->writer->setTargetFile($this->tmpDir . 'xmlFile.xml');
@@ -50,12 +47,12 @@ class XmlTest extends BaseTest
         @unlink($this->tmpDir . 'xmlFile.xml');
     }
 
-    public function testFactory()
+    public function testFactory(): void
     {
         $this->assertInstanceOf('TS\\Writer\\Implementation\\Xml', Xml::factory($this->dispatcher));
     }
 
-    public function testXmlAccessors()
+    public function testXmlAccessors(): void
     {
         $this->writer->setEncoding('ISO-8559-1');
         $this->writer->setPrettyPrint(false);
@@ -79,22 +76,20 @@ class XmlTest extends BaseTest
         $this->assertEquals('foo', $rootNode->getValue($this->writer));
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\DumpingException
-     * @expectedExceptionMessage Type object can't be converted to xml.
-     */
-    public function testWriteAllObjectDumpingException()
+    public function testWriteAllObjectDumpingException(): void
     {
+        $this->expectException(DumpingException::class);
+        $this->expectExceptionMessage("Type object can't be converted to xml.");
+
         $this->writer->setData($this->getData());
         $this->assertTrue($this->writer->writeAll());
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\DumpingException
-     * @expectedExceptionMessage tag
-     */
-    public function testWriteAllInvalidTagException()
+    public function testWriteAllInvalidTagException(): void
     {
+        $this->expectException(DumpingException::class);
+        $this->expectExceptionMessage('tag');
+
         $data = array(
             0 => 'value'
         );
@@ -103,12 +98,11 @@ class XmlTest extends BaseTest
         $this->assertTrue($this->writer->writeAll());
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\DumpingException
-     * @expectedExceptionMessage attribute
-     */
     public function testWriteAllInvalidAttributeException()
     {
+        $this->expectException(DumpingException::class);
+        $this->expectExceptionMessage('attribute');
+
         $data = array(
             'xmlEntity' => array(
                 '@attributes' => array(

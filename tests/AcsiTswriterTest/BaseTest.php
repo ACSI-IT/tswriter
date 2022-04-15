@@ -1,17 +1,13 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 abstract class BaseTest extends TestCase
 {
     protected $data = array(
@@ -35,7 +31,7 @@ abstract class BaseTest extends TestCase
         parent::__construct();
 
         $this->dispatcher = new EventDispatcher();
-        $this->tmpDir     = realpath(__DIR__ . '/tmp') . '/';
+        $this->tmpDir     = __DIR__ . '/tmp';
     }
 
     protected function getData()
