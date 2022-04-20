@@ -80,14 +80,14 @@ class FactoryTest extends TestCase
         $this->factory->createForType('txt');
     }
 
-//    public function testFactory(): void
-//    {
-//        $instance = new Txt(new EventDispatcher());
-//
-//        $this->factory->registerWriter($instance);
-//
-//        $writer = $this->factory->createForType('txt');
-//
-//        $this->assertEquals($instance, $writer);
-//    }
+    public function testFactory(): void
+    {
+        $instance = new Txt(new EventDispatcher());
+
+        $this->factory->registerWriter($instance);
+
+        $writer = $this->factory->createForType('txt');
+
+        $this->assertEquals($instance, $writer);
+    }
 }
