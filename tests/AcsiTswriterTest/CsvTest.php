@@ -1,16 +1,12 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use ReflectionObject;
 use TS\Writer\Implementation\Csv;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class CsvTest extends BaseTest
 {
     protected $data = array(
@@ -24,7 +20,7 @@ class CsvTest extends BaseTest
      */
     private $writer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->writer = new Csv($this->dispatcher);
         $this->writer->setTargetFile($this->tmpDir . 'csvFile.csv');

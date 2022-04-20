@@ -1,6 +1,8 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -8,17 +10,14 @@ use TS\Writer\Event\IterationEvent;
 use TS\Writer\IterableWriter;
 use TS\Writer\WriterEvents;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class ArrayWriter extends IterableWriter
 {
-    private $array = array();
+    private $array = [];
 
-    public function getArray()
+    /**
+     * @return array
+     */
+    public function getArray(): array
     {
         return $this->array;
     }
@@ -29,7 +28,7 @@ class ArrayWriter extends IterableWriter
         $data    = $this->morphData();
 
         if ($success && $data !== null) {
-            $this->eventDispatcher->dispatch(WriterEvents::WRITE, new IterationEvent($this));
+            $this->eventDispatcher->dispatch(new IterationEvent($this), WriterEvents::WRITE);
 
             $this->array[] = $data;
         }
@@ -45,7 +44,7 @@ class IterableWriterTest extends TestCase
      */
     private $writer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->writer = new ArrayWriter(new EventDispatcher);
     }

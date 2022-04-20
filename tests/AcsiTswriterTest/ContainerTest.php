@@ -1,20 +1,18 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionObject;
 use stdClass;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use TS\Writer\Exception\FactoryTypeException;
 use TS\Writer\FileWriterContainer;
 use TS\Writer\Implementation\Txt;
+use TS\Writer\Exception\FactoryClassException;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class ContainerTest extends TestCase
 {
     /**
@@ -22,7 +20,7 @@ class ContainerTest extends TestCase
      */
     private $factory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->factory = new FileWriterContainer(new EventDispatcher);
     }
@@ -32,23 +30,21 @@ class ContainerTest extends TestCase
         $this->factory = null;
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testRegistrationInvalidTypeException()
+    public function testRegistrationInvalidTypeException(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $this->factory->registerWriter(new stdClass, 'std');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testRegistrationNoTypeException()
+    public function testRegistrationNoTypeException(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $this->factory->registerWriter('TS\\Writer\\Implementation\\Txt', null);
     }
 
-    public function testRegistration()
+    public function testRegistration(): void
     {
         $reflection = new ReflectionObject($this->factory);
 
@@ -66,7 +62,7 @@ class ContainerTest extends TestCase
         $this->assertArrayNotHasKey($class, $registry->getValue($this->factory));
     }
 
-    public function testUnregistrationWithInstance()
+    public function testUnregistrationWithInstance(): void
     {
         $reflection = new ReflectionObject($this->factory);
 
@@ -86,23 +82,21 @@ class ContainerTest extends TestCase
         $this->assertArrayNotHasKey($class, $registry->getValue($this->factory));
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\FactoryClassException
-     */
-    public function testFactoryClassException()
+    public function testFactoryClassException(): void
     {
+        $this->expectException(FactoryClassException::class);
+
         $this->factory->createInstance('stdClass');
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\FactoryTypeException
-     */
-    public function testFactoryTypeException()
+    public function testFactoryTypeException(): void
     {
+        $this->expectException(FactoryTypeException::class);
+
         $this->factory->createForType('txt');
     }
 
-    public function testFactory()
+    public function testFactory(): void
     {
         $instance = new Txt(new EventDispatcher);
 
@@ -113,7 +107,7 @@ class ContainerTest extends TestCase
         $this->assertEquals($instance, $writer);
     }
 
-    public function testSupports()
+    public function testSupports(): void
     {
         $this->factory->registerWriter('TS\\Writer\\Implementation\\Txt', 'txt');
 
@@ -121,7 +115,7 @@ class ContainerTest extends TestCase
         $this->assertEquals(array('txt'), $this->factory->supportedTypes());
     }
 
-    public function testArrayAccessMethods()
+    public function testArrayAccessMethods(): void
     {
         $reflection = new ReflectionObject($this->factory);
 
@@ -150,11 +144,10 @@ class ContainerTest extends TestCase
         $this->assertArrayNotHasKey($class, $registry->getValue($this->factory));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testArrayAccessException()
+    public function testArrayAccessException(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $writer = $this->factory['asdf'];
     }
 }

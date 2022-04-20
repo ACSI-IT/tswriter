@@ -1,16 +1,12 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use ReflectionObject;
 use TS\Writer\Implementation\Json;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class JsonTest extends BaseTest
 {
     protected $data = array(
@@ -28,7 +24,7 @@ class JsonTest extends BaseTest
      */
     private $writer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->writer = new Json($this->dispatcher);
         $this->writer->setTargetFile($this->tmpDir . 'jsonFile.json');

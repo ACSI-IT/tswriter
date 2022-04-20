@@ -106,7 +106,7 @@ class Xml extends FileWriter
         // After we're done with all the keys in the array (if it is one)
         // we check if it has any text value, if yes, append it.
         if (!is_array($data)) {
-            $childNode = @$this->xml->createTextNode($this->convertBool($data));
+            $childNode = @$this->xml->createTextNode((string) $this->convertBool($data));
 
             if (!$childNode) {
                 throw new DumpingException('Type ' . gettype($data) . " can't be converted to xml.");

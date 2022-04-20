@@ -1,16 +1,12 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\Implementation\Txt;
 
-/**
- * @package   Writer
- * @author    Michel Maas (AxaliaN)
- * @copyright 2014 ACSI Holding bv (http://www.acsi.eu)
- * @version   1.2
- */
 class WriterTest extends BaseTest
 {
     /**
@@ -18,7 +14,7 @@ class WriterTest extends BaseTest
      */
     private $writer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->writer = new Txt(new EventDispatcher);
     }

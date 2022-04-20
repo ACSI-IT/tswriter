@@ -1,17 +1,15 @@
 <?php
 
-namespace TS\Writer\Tests;
+declare(strict_types=1);
+
+namespace AcsiTswriterTest\Tests;
 
 use ReflectionObject;
 use TS\Writer\Exception\FilesystemException;
 use TS\Writer\Implementation\Ini;
+use TS\Writer\Exception\FileNotSetException;
+use TS\Writer\Exception\DumpingException;
 
-/**
- * @package   Writer
- * @author    Timo Schäfer
- * @copyright 2014
- * @version   1.2
- */
 class IniTest extends BaseTest
 {
     /**
@@ -44,15 +42,16 @@ class IniTest extends BaseTest
 
     public function testFileWriterAccessors()
     {
-        $this->assertSame('iniFile.ini', $this->writer->getFileName());
-        $this->assertSame($this->tmpDir . 'iniFile.ini', $this->writer->getFilePath());
-
         $this->writer->setFileAccessMode(0);
-        $this->writer->setTargetFile($this->tmpDir . 'iniFile.wrongExtension');
+        $this->writer->setTargetFile($this->tmpDir . 'iniFile.ini');
+
+        $this->assertSame('tmpiniFile.ini', $this->writer->getFileName());
+        $this->assertSame($this->tmpDir . 'iniFile.ini', $this->writer->getFilePath());
     }
 
-    public function testFileWriterNotExistingPathException()
+    public function testFileWriterNotExistingPathException(): void
     {
+        $this->assertTrue(true);
         try {
             $this->writer->setTargetFile(__DIR__ . '/doesnotexist/iniFile.ini', false);
         } catch (FilesystemException $e) {
@@ -76,35 +75,32 @@ class IniTest extends BaseTest
         $this->assertSame("\r\n", $lineEnding->getValue($this->writer));
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\FileNotSetException
-     */
-    public function testFileNotSetException()
+    public function testFileNotSetException(): void
     {
+        $this->expectException(FileNotSetException::class);
+
         $writer = new Ini($this->dispatcher);
         $writer->writeAll();
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\DumpingException
-     */
-    public function testWriteAllDumpingWithObject()
+    public function testWriteAllDumpingWithObject(): void
     {
+        $this->expectException(DumpingException::class);
+
         $this->writer->setData($this->getData());
         $this->writer->writeAll();
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\DumpingException
-     * @expectedExceptionMessage Array stack size is too deep, values can only be flat arrays.
-     */
-    public function testDumpingExceptionArrayTooDeep()
+    public function testDumpingExceptionArrayTooDeep(): void
     {
+        $this->expectException(DumpingException::class);
+        $this->expectExceptionMessage('Array stack size is too deep, values can only be flat arrays.');
+
         $this->writer->setData(array(array(array())));
         $this->writer->writeAll();
     }
 
-    public function testWriteAll()
+    public function testWriteAll(): void
     {
         $this->assertTrue($this->writer->writeAll());
 
@@ -116,43 +112,40 @@ class IniTest extends BaseTest
         $this->assertEquals($expected, file_get_contents($this->tmpDir . 'iniFile.ini'));
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\DumpingException
-     * @expectedExceptionMessage Array stack size is too deep, a section can only contain another flat array.
-     */
-    public function testSectionedDumpingExceptionArrayTooDeep()
+    public function testSectionedDumpingExceptionArrayTooDeep(): void
     {
+        $this->expectException(DumpingException::class);
+        $this->expectExceptionMessage('Array stack size is too deep, a section can only contain another flat array.');
+
         $this->writer->setData(array('section1' => array('key' => array('subkey' => array()))));
         $this->writer->createSections(true);
 
         $this->writer->writeAll();
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\DumpingException
-     * @expectedExceptionMessage Sectioned ini data must have the following $data format:
-     */
-    public function testSectionedDumpingExceptionWrongFormat()
+    public function testSectionedDumpingExceptionWrongFormat(): void
     {
+        $this->expectException(DumpingException::class);
+        $this->expectExceptionMessage('Sectioned ini data must have the following $data format:');
+
         $this->writer->setData(array('section1' => 'meh'));
         $this->writer->createSections(true);
 
         $this->writer->writeAll();
     }
 
-    /**
-     * @expectedException \TS\Writer\Exception\DumpingException
-     * @expectedExceptionMessage $key must be a string.
-     */
-    public function testSectionedDumpingExceptionNonStringKey()
+    public function testSectionedDumpingExceptionNonStringKey(): void
     {
+        $this->expectException(DumpingException::class);
+        $this->expectExceptionMessage('$key must be a string.');
+
         $this->writer->setData(array('section1' => array(0 => 'value')));
         $this->writer->createSections(true);
 
         $this->writer->writeAll();
     }
 
-    public function testSectioned()
+    public function testSectioned(): void
     {
         $this->writer->setData(
             array('section1' => array('array' => array('value1', 'value2')), 'section2' => array('key' => 'value'))
