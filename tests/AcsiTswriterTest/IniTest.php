@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AcsiTswriterTest\Tests;
+namespace AcsiTswriterTest;
 
 use ReflectionObject;
 use TS\Writer\Exception\FilesystemException;
