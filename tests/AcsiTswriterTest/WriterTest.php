@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AcsiTswriterTest\Tests;
+namespace AcsiTswriterTest;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use TS\Writer\Implementation\Txt;
