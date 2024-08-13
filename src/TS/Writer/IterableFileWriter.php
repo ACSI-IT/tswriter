@@ -44,6 +44,7 @@ abstract class IterableFileWriter extends FileWriter implements IterableWriterIn
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->data);
